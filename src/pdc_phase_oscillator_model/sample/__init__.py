@@ -30,7 +30,23 @@ def beta_and_p(delay, T, k):
     return Z_der(delay-p*T, k), p
 
 
-def plot_example(T, k, n, steps=50):
+def plot_Z(k):
+    fig, ax = plt.subplots(figsize=(30, 5))
+
+    scale = 100
+    x = [x/scale for x in range(2*scale)]
+    y = [Z(y/scale, k=k) for y in range(2*scale)]
+
+    ax.plot(x, y)
+    ax.axhline(y=0, color='r', linestyle='-')
+    ax.axvline(x=0, color='r', linestyle='-')
+    ax.set_title(f"$k = {k}$")
+    ax.set_xlabel(r"$\theta$")
+    ax.set_ylabel(r"$Z$")
+    ax.grid()
+
+
+def plot(T, k, n, steps=50):
     d = delay(n, T, k)
     beta, p = beta_and_p(d, T, k)
     plot_system(lambda theta: Z(theta, k), d, steps=steps, title=fr"$\tau={d}, k={k}, \beta={beta}, p={p}$")
