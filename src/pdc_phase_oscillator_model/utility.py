@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from model import Model
+from pdc_phase_oscillator_model.model import Model
 
 
 def plot(Z, delay, steps, title="", period=1, transient_process=300, abs_error=0.0001):

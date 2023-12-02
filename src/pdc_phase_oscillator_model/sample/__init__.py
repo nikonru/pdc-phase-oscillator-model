@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from pdc_phase_oscillator_model import plot as plot_system
+from pdc_phase_oscillator_model.utility import plot as plot_system
 
 
 def Z(theta, k):
