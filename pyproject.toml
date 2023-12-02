@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pdc-phase-oscillator-model"
-version = "0.1"
+version = "0.2"
 authors = [
-  { name="Nikita Makarov", email="makaroff.nickita2013@yandex.ru" },
+  { name="nikonru", email="makaroff.nickita2013@yandex.ru" },
 ]
 description = "A model of phase oscillator with pulse delayed coupling"
 readme = "README.md"
