@@ -5,7 +5,8 @@ from pdc_phase_oscillator_model.utility import plot as plot_system
 
 
 def __get_parameters(k):
-    return 1, 4, -k/2
+    a, c, b = 1, 4, -k/2
+    return a, c, b
 
 
 def Z(theta, k):
