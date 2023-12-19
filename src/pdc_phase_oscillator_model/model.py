@@ -39,6 +39,9 @@ class Model:
 
         return timeline, phase
 
+    def set_delay(self, delay):
+        self.delay = delay
+
     def __step(self):
         pulse_time = self.pulse_times[0] if self.pulse_times else np.Infinity
 

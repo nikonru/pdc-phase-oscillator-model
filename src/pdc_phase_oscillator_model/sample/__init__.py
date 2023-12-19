@@ -4,20 +4,24 @@ import matplotlib.pyplot as plt
 from pdc_phase_oscillator_model.utility import plot as plot_system
 
 
+def __get_parameters(k):
+    return 1, 4, -k/2
+
+
 def Z(theta, k):
-    a, c, b = 1, 5, -3
+    a, c, b = __get_parameters(k)
     t = -np.tanh(k*theta+b)
     return (t+a)/c
 
 
 def Z_inv(z, k):
-    a, c, b = 1, 5, -3
+    a, c, b = __get_parameters(k)
     t = np.arctanh(a-z*c)-b
     return t/k
 
 
 def Z_der(theta, k):
-    a, c, b = 1, 5, -3
+    a, c, b = __get_parameters(k)
     return -k/c * (1/np.cosh(k*theta+b)**2)
 
 
