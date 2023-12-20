@@ -4,25 +4,25 @@ import matplotlib.pyplot as plt
 from pdc_phase_oscillator_model.utility import plot as plot_system
 
 
-def __get_parameters(k):
+def _get_parameters(k):
     a, c, b = 1, 4, -k/2
     return a, c, b
 
 
 def Z(theta, k):
-    a, c, b = __get_parameters(k)
+    a, c, b = _get_parameters(k)
     t = -np.tanh(k*theta+b)
     return (t+a)/c
 
 
 def Z_inv(z, k):
-    a, c, b = __get_parameters(k)
+    a, c, b = _get_parameters(k)
     t = np.arctanh(a-z*c)-b
     return t/k
 
 
 def Z_der(theta, k):
-    a, c, b = __get_parameters(k)
+    a, c, b = _get_parameters(k)
     return -k/c * (1/np.cosh(k*theta+b)**2)
 
 
@@ -86,3 +86,36 @@ def plot_delay_period(n_range=None, k_range=None, title=r"$Z(\theta)=\frac{\tanh
     ax.set_ylabel(r"$T$")
     ax.legend(loc="upper right")
     ax.grid()
+
+
+class Latex:
+
+    @staticmethod
+    def Z(k=None):
+        '''
+        from IPython.display import display, Math
+        display(Math(Latex.Z()))
+        '''
+        a, c, _ = _get_parameters(0)
+        k = f"{'k' if not k else k}"
+        return fr"$Z(\theta) = \frac{{-\tanh({k} \theta - {k}/2) + {a}}}{{{c}}}$"
+
+    @staticmethod
+    def Z_inv(k=None):
+        '''
+        from IPython.display import display, Math
+        display(Math(Latex.Z_inv()))
+        '''
+        a, c, _ = _get_parameters(0)
+        k = f"{'k' if not k else k}"
+        return fr"$\theta(Z) = \frac{{\tanh^{{-1}}({a} - {c}Z) + {k}/2 }}{{{k}}}$"
+
+    @staticmethod
+    def Z_der(k=None):
+        '''
+        from IPython.display import display, Math
+        display(Math(Latex.Z_der()))
+        '''
+        a, c, _ = _get_parameters(0)
+        k = f"{'k' if not k else k}"
+        return fr"$\Z'(\theta) = -\frac{{{k}}}{{{c}}} \cdot \frac{{1}}{{\cosh^{{2}}({k}\theta - {k}/2)}}$"
